@@ -2,14 +2,12 @@
 
 import { useContext } from "react";
 import { FriendContext } from "@/context/FriendContext";
-import { toast } from "react-toastify";
 
 const AddFriendButton = ({ friend }) => {
   const { addFriend } = useContext(FriendContext);
 
   const handleAddFriend = () => {
     const added = addFriend(friend);
-    toast.success("Friend added successfully!");
   };
 
   return (

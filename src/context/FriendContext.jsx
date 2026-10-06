@@ -8,18 +8,16 @@ const FriendProvider = ({ children }) => {
   const [friends, setFriends] = useState([]);
 
   const addFriend = (friend) => {
-    setFriends((previousFriends) => {
-      const alreadyExists = previousFriends.some(
-        (item) => item.id === friend.id,
-      );
+    const alreadyExists = friends.some((item) => item.id === friend.id);
 
-      if (alreadyExists) {
-        toast.error("Friend already exists!");
-        return previousFriends;
-      }
+    if (alreadyExists) {
+      toast.error("Friend already added!");
+      return;
+    }
 
-      return [...previousFriends, friend];
-    });
+    setFriends((previousFriends) => [...previousFriends, friend]);
+
+    toast("Friend added successfully!");
   };
 
   const removeFriend = (id) => {
