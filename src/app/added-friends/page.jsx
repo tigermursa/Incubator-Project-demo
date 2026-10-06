@@ -5,7 +5,7 @@ import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 
 const AddedFriendPage = () => {
-  const { friends, removeFriend } = useContext(FriendContext);
+  const { friends, removeFriend, markAsDone } = useContext(FriendContext);
 
   const [sortOrder, setSortOrder] = useState("low");
 
@@ -82,12 +82,26 @@ const AddedFriendPage = () => {
                 </td>
 
                 <td className="border border-gray-300 px-4 py-3">
-                  <button
-                    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-                    onClick={() => handleRemoveFriend(friend.id)}
-                  >
-                    Remove Friend
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => markAsDone(friend.id)}
+                      disabled={friend.status === "done"}
+                      className={`px-4 py-2 rounded text-white ${
+                        friend.status === "done"
+                          ? "bg-green-500 cursor-not-allowed"
+                          : "bg-blue-500 hover:bg-blue-600"
+                      }`}
+                    >
+                      {friend.status === "done" ? "Done" : "Mark as Done"}
+                    </button>
+
+                    <button
+                      className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                      onClick={() => handleRemoveFriend(friend.id)}
+                    >
+                      Remove Friend
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

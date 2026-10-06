@@ -15,9 +15,22 @@ const FriendProvider = ({ children }) => {
       return;
     }
 
-    setFriends((previousFriends) => [...previousFriends, friend]);
+    const friendWithStatus = {
+      ...friend,
+      status: "pending",
+    };
+
+    setFriends((previousFriends) => [...previousFriends, friendWithStatus]);
 
     toast("Friend added successfully!");
+  };
+
+  const markAsDone = (id) => {
+    setFriends((previousFriends) =>
+      previousFriends.map((friend) =>
+        friend.id === id ? { ...friend, status: "done" } : friend,
+      ),
+    );
   };
 
   const removeFriend = (id) => {
@@ -26,7 +39,9 @@ const FriendProvider = ({ children }) => {
     );
   };
   return (
-    <FriendContext.Provider value={{ friends, addFriend, removeFriend }}>
+    <FriendContext.Provider
+      value={{ friends, addFriend, markAsDone, removeFriend }}
+    >
       {children}
     </FriendContext.Provider>
   );
