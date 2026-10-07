@@ -8,4 +8,4 @@
 - **Context API** ব্যবহার করে Global State Management
 - **Toast Notification** ব্যবহার করে User Feedback প্রদান
 - **Sorting** ফিচার ইমপ্লিমেন্ট করা
-- **Ver**
+- **Vercel** ব্যবহার করে প্রজেক্ট Deployment করা
